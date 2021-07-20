@@ -2,10 +2,10 @@
 
 A fun and reminiscence-filled game celebrating American black popular culture. The Black Card Revoked game intend to invoke hilarious debates among young and old alike. Don't get your black card revoked!.
 
-# Plays up to 6 people.
-# Includes 81 question cards.
-# 24 response cards.
-# Family friendly
+Plays up to 6 people.
+Includes 81 question cards.
+24 response cards.
+Family friendly
 
 # How To Play
 
