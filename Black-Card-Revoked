@@ -1,0 +1,93 @@
+import java.util.*;
+import javax.swing.JOptionPane;
+
+/* Black Card Revoked requires a minimum of three (3) people to play and a maximum of six. 
+ * The game will ask for the number of players
+ * The game will ask for the names of the players
+ * 
+ * The game will give the first question to each of the players that is multiple choice
+ * The correct answer is revealed after each player gives their answer.
+ * 
+ * Round 2 of the game will start with Player 2. 
+ * The multiple choice answers are given then the following rotation ensues: 
+ * Player2 Answer, Player3, Player last, and returns to Player 1. 
+ * 
+ * Black Card Revoked is played until at least everyone goes one full round going first
+ * and leaves an option to either CONTINUE (the game) or END (the game). 
+ * 
+ * Points are tallied at the final round and the winner is the one that has the most points.
+ * If there are multiple players with the same number of points, TIE will be returned as the result.
+*/ 
+
+public class BlackCardRevoked {
+
+  public static void main(String[]args)
+  {  
+    String name;     // To hold the player's name
+    String str;      // To hold the string
+    int numPlayers;  // To hold the number of players
+    int [] Max_NumPlayers;
+    
+    
+    /* Create the Scanner object to read input */
+    Scanner keyboard = new Scanner(System.in);
+    
+    /* Get the number of players */
+    str = JOptionPane.showInputDialog("Enter number of players");
+    numPlayers = Integer.parseInt(str);
+    
+    /* Display the number of players entered */
+    System.out.println( numPlayers);
+     
+    /* Get the player's name */
+    name = JOptionPane.showInputDialog("Enter you name ");
+    
+    /* Display the player's name entered */
+    System.out.println("Name: " + name);
+    
+    
+    /* Condition for a MINIMUM of 3 players and a MAXIMUM of 6 players */
+    /* If there are less than 3 players, reject and request a minimum of 3 players */
+    for(int count = 0; count < numPlayers; count++)
+    {
+      if(numPlayers <= 6 && numPlayers >= 3)
+      {
+        
+      }
+    }
+    
+    /* Case-swith for Rounds */
+    
+    
+    
+    
+    
+    /* Array to hold 81 random questions */
+    
+    
+    
+    
+    
+    
+    /* Array to return 24 random response cards */
+    
+    
+    
+    
+    
+    /* Tally points for each player per round and final tally 
+     *  Return a tie if there is a tie 
+    */ 
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    //System.exit(0);
+  }
+}
