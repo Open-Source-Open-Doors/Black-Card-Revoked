@@ -48,6 +48,7 @@ public class BlackCardLola {
         query.add(new Questions(q4, "d"));
         query.add(new Questions(q5, "b"));
 
+        //Shuffles the arraylist of questions
         Collections.shuffle(query);
 
         //Greets the user and ask if they would like to play the game
