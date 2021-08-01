@@ -129,9 +129,10 @@ public class BlackCard{
                 playerList.get(j).score += 1;                                                //Increments the score by one point if the user gets the answer correct    
                 score = playerList.get(j).score;
                 playerList.get(j).setScore(score);                                           //Sets the score of the player         
-            }
-                              
+            }                                                    
         } 
+             
+             System.out.println("The answer for this question is: " + query.get(i).getAnswer());
       }
          
          System.out.println("Stats for this round: ");
