@@ -1,5 +1,5 @@
 package blackcard;
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -9,8 +9,11 @@ import java.util.ArrayList;
 public class BlackCardLola {
 
     static int numOfPlayers = 0;
-
-    public static void main (String[] args){
+    static int finalScore = 0;
+    static boolean onePlaysNext;
+    //Arraylist of dupe names
+    static ArrayList<Player> DPL = new ArrayList<Player>();
+    public static void main(String[] args) {
 
         String playGame = " ";
         //int numOfPlayers = 0;
@@ -19,6 +22,8 @@ public class BlackCardLola {
 
         //Defines the ArrayList playerList
         ArrayList<Player> playerList = new ArrayList<Player>();
+
+
 
         //Initializes the Player class inorder to use in loop
         Player player = null;
@@ -48,7 +53,6 @@ public class BlackCardLola {
         query.add(new Questions(q4, "d"));
         query.add(new Questions(q5, "b"));
 
-        //Shuffles the arraylist of questions
         Collections.shuffle(query);
 
         //Greets the user and ask if they would like to play the game
@@ -57,21 +61,21 @@ public class BlackCardLola {
         playGame = input.nextLine();
 
         //Begins the game if the user entered yes
-        while(playGame.equals("yes") || playGame.equals("y")){
+        while (playGame.equals("yes") || playGame.equals("y")) {
 
             System.out.println("Please enter the number of players playing the game. You can only have 6 play per round. ");
             numOfPlayers = input.nextInt();
             input.nextLine();
 
             //Checks if the number of players is greater than 6
-            if(numOfPlayers > 6){
+            if (numOfPlayers > 6) {
                 System.out.println("Please enter a number that is less or equal to 6");
                 System.out.println("You can not have more than 6 players");
                 numOfPlayers = input.nextInt();
                 input.nextLine();
             }
             //Collects all of the participating players name's
-            for(int i = 1; i <= numOfPlayers; i++){
+            for (int i = 1; i <= numOfPlayers; i++) {
 
                 //Instantiates the player object
                 player = new Player();
@@ -80,35 +84,45 @@ public class BlackCardLola {
 
                 //Adds the players entry into the player list
                 playerList.add(player);
-
+                DPL.add(player);
             }
 
-            //takeTest(query, playerList);
+            takeTest(query, playerList);
+            takeTurns(playerList);
+
 
             //Prompts the user if they would like to play again
-            //Change for switch
-            System.out.println("Are you ready ");
+            System.out.println("Would You like to play again? ");
             playGame = input.nextLine();
 
-            takeTest(query, playerList);
+
+        }while(playGame.equals("no") || playGame.equals("n")){
+            break;
         }
 
 
-        //Test to see if the players names were collected
-        for(int i = 0; i < playerList.size(); i++){
-            System.out.println(playerList.get(i));
+
+    }
+
+    public static void takeTurns(ArrayList < Player > playerList){
+        int inc=0;
+
+        if(playerList.get(inc).getPlayer() == DPL.get(inc).getPlayer()){
+            inc++;
+            playerList.get(inc).getPlayer();
         }
 
     }
 
-    //Allows users to answer the questions from Black Card Revoked
-    public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList){
+
+        //Allows users to answer the questions from Black Card Revoked
+        public static void takeTest (ArrayList < Questions > query, ArrayList < Player > playerList){
         String answer = " "; //For the user to store their answer
         double score = 0;
         Scanner answerInput = new Scanner(System.in);
 
         //Traverse the query list to show the player the questions
-        for(int i = 0; i < numOfPlayers; i++){
+        for (int i = 0; i < numOfPlayers; i++) {
             //Prints out the question
             System.out.println("Hello player " + playerList.get(i).getPlayer() + ", answer the following question: ");
             System.out.println(query.get(i).getQuestion());
@@ -116,20 +130,23 @@ public class BlackCardLola {
 
 
             //Checks if the answer is correct
-            if(answer.equals(query.get(i).getAnswer())){
-                score  += 1;                                                    //Increments the score by one point if the user gets the answer correct
+            if (answer.equals(query.get(i).getAnswer())) {
+                score += 1;                                                    //Increments the score by one point if the user gets the answer correct
                 playerList.get(i).setScore(score);                              //Sets the score of the player
                 System.out.println("That's correct!");
                 System.out.println("You're score is: " + playerList.get(i).getScore());
-            }
-            else{
+                finalScore++;
+            } else {
                 System.out.println("That's incorrect!");                       //Tells the user the answer is incorrect
                 System.out.println("You're score is: " + playerList.get(i).getScore());
             }
+
+
         }
+
+    }
 
 
     }
 
-}
 
