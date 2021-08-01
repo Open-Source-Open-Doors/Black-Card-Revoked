@@ -109,7 +109,7 @@ public class BlackCard{
      //Allows users to answer the questions from Black Card Revoked
      public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList){
         String answer = " "; //For the user to store their answer
-        double score = 0;
+        double score = 0.0;
         Scanner answerInput = new Scanner(System.in);
 
          for(int i= 0; i < numOfPlayers; i++){
@@ -120,22 +120,17 @@ public class BlackCard{
         //Traverse the query list to show the player the questions        
         for(int j = 0; j < numOfPlayers; j++){
             
-            //Prints out the question
-            System.out.println("Hello player " + playerList.get(j).getPlayer() + ", please enter your answer below: ");
-            //System.out.println(query.get(i).getQuestion());
+            //Allows user to enter in their answer
+            System.out.println("Hello player " + playerList.get(j).getPlayer() + ", please enter your answer below: ");            
             answer = answerInput.nextLine();                      
             
             //Checks if the answer is correct
             if(answer.equals(query.get(i).getAnswer())){
-                score  += 1;                                                    //Increments the score by one point if the user gets the answer correct
-                playerList.get(j).setScore(score);                              //Sets the score of the player
-                //System.out.println("That's correct!");
-                //System.out.println("You're score is: " + playerList.get(i).getScore());          
+                playerList.get(j).score += 1;                                                //Increments the score by one point if the user gets the answer correct    
+                score = playerList.get(j).score;
+                playerList.get(j).setScore(score);                                           //Sets the score of the player         
             }
-           /* else{
-                System.out.println("That's incorrect!");                       //Tells the user the answer is incorrect
-            }   
-             */                     
+                              
         } 
       }
          
@@ -146,8 +141,6 @@ public class BlackCard{
              System.out.println(playerList.get(i));
          }
          
-        
-                  
     }
                                  
   }                              
