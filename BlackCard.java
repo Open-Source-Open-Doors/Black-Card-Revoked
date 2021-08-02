@@ -108,8 +108,12 @@ public class BlackCard{
     
      //Allows users to answer the questions from Black Card Revoked
      public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList){
-        String answer = " "; //For the user to store their answer
+        String answer = " ";         //For the user to store their answer
         double score = 0.0;
+        double highScore = 0.0;
+        String winner = " ";
+         
+         
         Scanner answerInput = new Scanner(System.in);
 
          for(int i= 0; i < numOfPlayers; i++){
@@ -141,6 +145,22 @@ public class BlackCard{
          for(int i = 0; i < playerList.size(); i++){
              System.out.println(playerList.get(i));
          }
+         
+         //Checks for the highest score
+         for(int i = 0; i < playerList.size(); i++){
+             if(i == 0){
+                 highScore = playerList.get(i).getScore();
+             }
+             if(playerList.get(i).getScore() > highScore){
+                 highScore = playerList.get(i).getScore();                 //Saves the highest score
+                 winner = playerList.get(i).getPlayer();                   //Saves the player with the highest score in the winner variable
+             }
+             
+                                       
+         }
+         
+         //Prints the winner
+         System.out.println("Congrats " + winner + ", you won this round!");
          
     }
                                  
