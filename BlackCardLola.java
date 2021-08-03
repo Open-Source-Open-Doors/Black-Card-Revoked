@@ -72,11 +72,21 @@ public class BlackCardLola {
                 player = new Player();
                 System.out.println("Hello player " + i + ", please enter your name: ");   //Prompts user to enter name
                 player.setPlayer(input.nextLine());
-
                 //Adds the players entry into the player list
                 playerList.add(player);
 
+                //Checks to see if the name is entered in the right format
+                String regex1 = "\\d+";
+                while(player.name.matches(regex1)){
+
+                    System.out.println("That is the incorrect, Please enter name in the right format");
+                    player.setPlayer(input.nextLine());
+                    playerList.add(player);
+                }
+
+
             }
+
             System.out.println("Participants in the game: ");
 
             for(int i = 0; i < playerList.size(); i++){
@@ -158,8 +168,16 @@ public class BlackCardLola {
 
         }
 
+
+
         //Prints the winner
         System.out.println("Congrats " + winner + ", you won this round!");
+
+        //Prints the person with the max score
+        Player maxScoredPerson = Collections.max(playerList, Comparator.comparing(Player::getScore));
+        System.out.println("The person with the highest score is " + maxScoredPerson);
+
+
 
     }
 
