@@ -1,12 +1,14 @@
 package blackcard;
-import java.security.cert.CollectionCertStoreParameters;
+import java.io.IOException;
 import java.util.*;
 
 public class BlackCardLola {
 
     static int numOfPlayers = 0;
 
-    public static void main (String[] args){
+    static int width = 100;
+   static int height = 30;
+    public static void main (String[] args) throws IOException {
 
         String playGame = " ";
         //int numOfPlayers = 0;
@@ -42,9 +44,12 @@ public class BlackCardLola {
         query.add(new Questions(q4, "d"));
         query.add(new Questions(q5, "b"));
 
+
+
         //Greets the user and ask if they would like to play the game
-        System.out.println("Hello, Welcome to black card revoked!");
-        System.out.println("Please enter 'yes' or 'no' if you are ready to play: ");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~Hello, Welcome to black card revoked!~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~Please enter 'yes' or 'no' if you are ready to play: ~~~~~~~~~");
         playGame = input.nextLine();
 
         //Begins the game if the user entered yes
