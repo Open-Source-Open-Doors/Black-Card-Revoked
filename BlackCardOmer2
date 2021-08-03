@@ -94,7 +94,7 @@ public class BlackCard
                   //Participants in the game
                      
                   
-                                  
+                    Collections.shuffle(query);              
                     takeTest(query, player);   //object array parameter
          
              //Prompts the user if they would like to play again   
@@ -128,7 +128,7 @@ public class BlackCard
         for(int j = 0; j < numOfPlayers; j++){
             
             //Allows user to enter in their answer
-            System.out.println("Hello player " + array[j].getPlayer() + ", please enter your answer below: ");            
+            System.out.println("Hello player "+(j+1)+", " + array[j].getPlayer() + ", please enter your answer below: ");            
             answer = answerInput.nextLine();                      
             
             //Checks if the answer is correct
