@@ -43,6 +43,14 @@ public class BlackCard
         query.add(new Questions(q4, "d"));
         query.add(new Questions(q5, "b"));
         
+        System.out.println("Before we begin the game, would the user like to add questions? Enter yes or no.");
+        addQuestions=input.nextLine();
+        
+        if(addQuestions.equals("yes")){
+        	AddQuestions(query);
+        }
+        
+        
         //Greets the user and ask if they would like to play the game
         System.out.println("Hello, Welcome to black card revoked!");
         System.out.println("Please enter 'yes' or 'no' if you are ready to play: ");
@@ -148,6 +156,34 @@ public class BlackCard
          }
          
     }
-                                 
+    public static void AddQuestions(ArrayList<Questions>query) 
+     {
+    	 Scanner key=new Scanner(System.in);
+    	 int numQuestions=0;
+    	 System.out.println("How many questions do you want to add?");
+    	 numQuestions=key.nextInt();
+    	 Questions[]question=new Questions[numQuestions];
+    	 for(int i=0;i<numQuestions;i++)
+    	 {
+    		 String q="";
+    		 String[] choices=new String[4];
+    		 String answer="";
+    		 System.out.println("Please enter the question:");
+    		 q=key.nextLine();
+    		 key.nextLine();
+    		 for(int j=0;j<choices.length;j++) {
+    			 choices[j]="";
+    			 System.out.println("Please enter choice "+(j+1)+".");
+    			 choices[j].equals(key.nextLine()); 
+    		 }
+    		 q.equals(q+"(a)"+choices[0]+"\n(b)"+choices[1]+"\n(c)"+choices[2]+"\n(d)"+choices[3]);
+    		 System.out.println("Which letter is the answer?");
+    		 answer=key.nextLine();
+    		 question[i]=new Questions(q, answer);
+    		 System.out.println(question[i].getQuestion()+" "+answer);
+    		 query.add((question[i]));
+    	 }
+    	 
+     }                             
   }                            
 
