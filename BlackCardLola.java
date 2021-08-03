@@ -110,7 +110,13 @@ public class BlackCardLola {
             playGame = input.nextLine();
         }
 
-        System.out.println("Thank you for playing!!");
+        while(playGame.equals("no") || playGame.equals("n") || playGame.equals("No")){
+            System.out.println("Thank you for playing!!");
+            break;
+        }
+
+
+
 
         /*
          //Test to see if the players names were collected
@@ -125,8 +131,9 @@ public class BlackCardLola {
         String answer = " ";         //For the user to store their answer
         double score = 0.0;
         double highScore = 0.0;
+        double highScore2=0.0;
         String winner = " ";
-
+        String winner2 = " ";
 
         Scanner answerInput = new Scanner(System.in);
 
@@ -164,19 +171,36 @@ public class BlackCardLola {
         for(int i = 0; i < playerList.size(); i++){
             if(i == 0){
                 highScore = playerList.get(i).getScore();
+               // highScore2 = playerList.get(i+1).getScore();
             }
             if(playerList.get(i).getScore() > highScore){
                 highScore = playerList.get(i).getScore();                 //Saves the highest score
                 winner = playerList.get(i).getPlayer();                   //Saves the player with the highest score in the winner variable
+
+
             }
+            /**
+            else if(highScore == highScore2){
+                highScore = playerList.get(i).getScore();                 //Saves the highest score
+                winner = playerList.get(i).getPlayer();
+
+                highScore2 = playerList.get(i+1).getScore();                 //Saves the highest score
+                winner2 = playerList.get(i+1).getPlayer();
+                //Prints the winner
+                System.out.println("Congrats " + winner + ", you won this round!");
+                System.out.println("Congrats " + winner2 + ", you won this round!");
+
+
+            }
+             **/
 
 
         }
-
-
-
         //Prints the winner
         System.out.println("Congrats " + winner + ", you won this round!");
+
+
+
 
         //Prints the person with the max score
         Player maxScoredPerson = Collections.max(playerList, Comparator.comparing(Player::getScore));
