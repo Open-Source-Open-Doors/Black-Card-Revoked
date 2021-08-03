@@ -49,7 +49,9 @@ public class BlackCardLola {
         //Greets the user and ask if they would like to play the game
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("~~~~~~~~~~~~~~~Hello, Welcome to black card revoked!~~~~~~~~~~~~~~~~~~~");
-        System.out.println("~~~~~~~~~Please enter 'yes' or 'no' if you are ready to play: ~~~~~~~~~");
+        System.out.println("~~~Option 1:Please enter 'yes' or 'no' if you are ready to play: ~~~~~~");
+        System.out.println("~~~Option 2:Add questions of your choice ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~Option 3:                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         playGame = input.nextLine();
 
         //Begins the game if the user entered yes
@@ -162,7 +164,7 @@ public class BlackCardLola {
 
         System.out.println("Stats for this round: ");
 
-        //Prints the players names and score for this round
+        ///Prints the players names and score for this round
         for(int i = 0; i < playerList.size(); i++){
             System.out.println(playerList.get(i));
         }
@@ -171,7 +173,7 @@ public class BlackCardLola {
         for(int i = 0; i < playerList.size(); i++){
             if(i == 0){
                 highScore = playerList.get(i).getScore();
-               // highScore2 = playerList.get(i+1).getScore();
+                // highScore2 = playerList.get(i+1).getScore();
             }
             if(playerList.get(i).getScore() > highScore){
                 highScore = playerList.get(i).getScore();                 //Saves the highest score
@@ -179,6 +181,30 @@ public class BlackCardLola {
 
 
             }
+            //version 2
+        /**
+        //Checks for the highest score
+        for(int i = 0; i < playerList.size(); i++){
+            if(i == 0){
+                highScore = playerList.get(i).getScore();
+                highScore2 = playerList.get(i+1).getScore();
+            }
+            //if case of one winner
+            if(playerList.get(i).getScore() > highScore){
+                highScore = playerList.get(i).getScore();                 //Saves the highest score
+                winner = playerList.get(i).getPlayer();                   //Saves the player with the highest score in the winner variable
+                //Prints the winner
+                System.out.println("Congrats " + winner + ", you won this round!");
+            }//if case if two winners
+            else if(highScore==highScore2){
+                highScore2 = playerList.get(i+1).getScore();                 //Saves the highest score
+                winner2 = playerList.get(i+1).getPlayer();
+                System.out.println("Congrats " + winner + ", you won this round!");
+                System.out.println("Congrats " + winner2 + ", you won this round!");
+            }
+
+**/
+        //version 1
             /**
             else if(highScore == highScore2){
                 highScore = playerList.get(i).getScore();                 //Saves the highest score
@@ -196,15 +222,14 @@ public class BlackCardLola {
 
 
         }
-        //Prints the winner
         System.out.println("Congrats " + winner + ", you won this round!");
 
 
 
 
         //Prints the person with the max score
-        Player maxScoredPerson = Collections.max(playerList, Comparator.comparing(Player::getScore));
-        System.out.println("The person with the highest score is " + maxScoredPerson);
+        //Player maxScoredPerson = Collections.max(playerList, Comparator.comparing(Player::getScore));
+       // System.out.println("The person with the highest score is " + maxScoredPerson);
 
 
 
