@@ -86,7 +86,7 @@ public class BlackCardLola {
 
             //Participants in the game
 
-
+            //Shuffles the questions in the query arraylist
             Collections.shuffle(query);
             takeTest(query, playerList);
 
