@@ -1,7 +1,8 @@
 package blackcard;
+import java.security.cert.CollectionCertStoreParameters;
 import java.util.*;
 
-public class BlackCardLola{
+public class BlackCardLola {
 
     static int numOfPlayers = 0;
 
@@ -41,8 +42,6 @@ public class BlackCardLola{
         query.add(new Questions(q4, "d"));
         query.add(new Questions(q5, "b"));
 
-        //Shuffles the questions
-        Collections.shuffle(query);
         //Greets the user and ask if they would like to play the game
         System.out.println("Hello, Welcome to black card revoked!");
         System.out.println("Please enter 'yes' or 'no' if you are ready to play: ");
@@ -88,7 +87,7 @@ public class BlackCardLola{
             //Participants in the game
 
 
-
+            Collections.shuffle(query);
             takeTest(query, playerList);
 
             //Prompts the user if they would like to play again
@@ -108,8 +107,12 @@ public class BlackCardLola{
 
     //Allows users to answer the questions from Black Card Revoked
     public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList){
-        String answer = " "; //For the user to store their answer
+        String answer = " ";         //For the user to store their answer
         double score = 0.0;
+        double highScore = 0.0;
+        String winner = " ";
+
+
         Scanner answerInput = new Scanner(System.in);
 
         for(int i= 0; i < numOfPlayers; i++){
@@ -130,9 +133,9 @@ public class BlackCardLola{
                     score = playerList.get(j).score;
                     playerList.get(j).setScore(score);                                           //Sets the score of the player
                 }
-
             }
-            System.out.println("The correct answer is:"+ query.get(i).getAnswer());
+
+            System.out.println("The answer for this question is: " + query.get(i).getAnswer());
         }
 
         System.out.println("Stats for this round: ");
@@ -142,9 +145,27 @@ public class BlackCardLola{
             System.out.println(playerList.get(i));
         }
 
+        //Checks for the highest score
+        for(int i = 0; i < playerList.size(); i++){
+            if(i == 0){
+                highScore = playerList.get(i).getScore();
+            }
+            if(playerList.get(i).getScore() > highScore){
+                highScore = playerList.get(i).getScore();                 //Saves the highest score
+                winner = playerList.get(i).getPlayer();                   //Saves the player with the highest score in the winner variable
+            }
+
+
+        }
+
+        //Prints the winner
+        System.out.println("Congrats " + winner + ", you won this round!");
+
     }
 
 }
+
+
 
 
 
