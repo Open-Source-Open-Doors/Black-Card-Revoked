@@ -118,7 +118,7 @@ public class BlackCardRevoked
             }
 
 
-            //Collects all of the participating players name's
+            //Collects all of the participating player's names
             for(int i = 1; i <= numPlayers; i++){
 
                 //Instantiates the player object
@@ -201,7 +201,7 @@ public class BlackCardRevoked
     }
 
     //Allows users to answer the questions from Black Card Revoked
-    public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList){
+    public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList) {
         String answer;         //For the user to store their answer
         int score = 10;
         int highScore = 0;
@@ -210,28 +210,60 @@ public class BlackCardRevoked
 
         Scanner answerInput = new Scanner(System.in);
 
-        for(int i= 0; i < numPlayers; i++){
+        for (int i = 0; i < numPlayers; i++) {
 
             //Prints out a question from the question list
             System.out.println(query.get(i).getQuestion());
 
             //Traverse the query list to show the player the questions
-            for(int j = 0; j < numPlayers; j++){
+            for (int j = 0; j < numPlayers; j++) {
 
                 //Allows user to enter in their answer
                 System.out.println("Hello player " + playerList.get(j).getPlayer() + ", please enter your answer below: ");
                 answer = answerInput.nextLine();
 
                 //Checks if the answer is correct
-                if(answer.equals(query.get(i).getAnswer())){
-                    playerList.get(j).score += 1;                 //Increments the score by one point if the user gets the answer correct
-                    score = playerList.get(j).score;
-                    playerList.get(j).setScore(score);            //Sets the score of the player
+                if (answer.equals(query.get(i).getAnswer())) {
+                   playerList.get(j).score += 1;                 //Increments the score by one point if the user gets the answer correct
+                   score = playerList.get(j).score;
+                   playerList.get(j).setScore(score);            //Sets the score of the player
+                } 
+                else 
+                {
+                   playerList.get(j).score -= 1;
+                   score = playerList.get(j).score;
+                   playerList.get(j).setScore(score);
                 }
-                else {
 
-                }
+
             }
 
             System.out.println("The answer for this question is: " + query.get(i).getAnswer());
         }
+
+        System.out.println("Stats for this round: ");
+
+        //Prints the players names and score for this round
+        playerList.forEach(System.out::println);
+
+        int maxQuestion = 10;
+
+        for (int round = 6; round < maxQuestion; round++) {
+
+        }
+
+        //Checks for the highest score
+        if (highScore > score) {
+            highScore = score;
+            System.out.println(playerList.get(highScore).getScore());
+            winner = playerList.get(highScore).getPlayer();                //Saves the player with the highest score in the winner variable
+        }
+    
+            
+
+        //Prints the winner
+        System.out.println("Congrats " + winner + ", you won this round!");
+
+    }
+
+}
