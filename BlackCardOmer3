@@ -170,7 +170,7 @@ public class BlackCard
          answerInput.close();
     }
      
-     public static void AddQuestions(ArrayList<Questions>query) 
+      private static void AddQuestions(ArrayList<Questions>query) 
      {
     	 Scanner key=new Scanner(System.in);
     	 int numQuestions=0;
@@ -179,53 +179,55 @@ public class BlackCard
     	 numQuestions=key.nextInt();
     	 
     	 
+    	 String q;
+    	 String c1,c2,c3,c4;
+    	 String full;
+    	 String answer;
+    	 Questions[]question=new Questions[numQuestions];
     	 for(int i=0;i<numQuestions;i++)
     	 {
-    		 
-    		 String q=" ";
-    		 String c1,c2,c3,c4;
-    		 
-    		 String answer="";
+   
     		
-    		 System.out.println("Please enter the question:");
-    		 q=key.nextLine();											//this line right here. String isn't being picked up correctly. ill run it
+    		 System.out.println("Please enter question number "+(i+1)+".");
+    		 key.nextLine();                                                       //Added nextline statement to get line before input. Then set q string equal to the question
+    		 q=key.nextLine();
     		
-    		 key.nextLine();
-    		 System.out.println(q);  //this is to check if its being inputted right. it's not...yes
+    		
+    		
+    		   
     		 
     		 
    
     		 
     		 System.out.println("Please enter your first choice\n(a)");
-    		 c1=key.next();
-    		 key.nextLine();
+    		 c1=key.nextLine();
+    		
     		 
     		 System.out.println("Please enter your second choice\n(b)");
-    		 c2=key.next();
-    		 key.nextLine();
+    		 c2=key.nextLine();
+    		 
     		
     		 System.out.println("Please enter your third choice\n(c)");
-    		 c3=key.next();
-    		 key.nextLine();
+    		 c3=key.nextLine();
+    		 
     		 
     		 System.out.println("Please enter your fourth choice\n(d)");
-    		 c4=key.next();
-    		 key.nextLine();
+    		 c4=key.nextLine();
+    		
     		 
     		 
+    		 full=((q)+"\n(a) "+c1+"\n(b) "+c2+"\n(c) "+c3+"\n(d) "+c4);              //print statement to check question plus choices in correct format
     		 
-    		 String full=new String((q)+"\n(a) "+c1+"\n(b) "+c2+"\n(c) "+c3+"\n(d) "+c4);
-    		 System.out.println(c1+" "+c2+" "+c3+" "+c4);
     		 System.out.println(full);
     		
     		 
     		 System.out.println("Which letter is the answer?");
     		 answer=key.nextLine();
     		 
-    		
-    		 System.out.println(full+" "+answer);
+    		question[i]=new Questions(full,answer);
+    		 System.out.println(full+"  answer:"+answer);
     		 
-    		 query.add(new Questions(full,answer));
+    		 query.add(question[i]);
     	 }
     	 
      }
