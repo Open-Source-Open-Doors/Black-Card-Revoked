@@ -1,24 +1,24 @@
 package blackcard;
-import java.io.IOException;
-import java.util.*;
 
-public class BlackCardLola {
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class BlackCardLola
+{
 
     static int numOfPlayers = 0;
 
-    static int width = 100;
-   static int height = 30;
-    public static void main (String[] args) throws IOException {
+    public static void main (String[] args) {
 
-        String playGame = " ";
-        //int numOfPlayers = 0;
+        String playGame = "";
+        String addQuestions = "";
+        int numOfPlayers = 0;
         Scanner input = new Scanner(System.in);
 
-        //Defines the ArrayList playerList
-        ArrayList<Player> playerList = new ArrayList<Player>();
 
         //Initializes the Player class inorder to use in loop
-        Player player = null;
+
 
         //Questions for Black Card Revoked
         String q1 = "Who is Oprah Winfrey's Best Friend?\n"
@@ -45,80 +45,77 @@ public class BlackCardLola {
         query.add(new Questions(q5, "b"));
 
 
+        System.out.println("Before we begin the game, would the user like to add questions? Enter yes or no.");
+        addQuestions = input.nextLine();
 
-        //Greets the user and ask if they would like to play the game
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("~~~~~~~~~~~~~~~Hello, Welcome to black card revoked!~~~~~~~~~~~~~~~~~~~");
-        System.out.println("~~~Option 1:Please enter 'yes' or 'no' if you are ready to play: ~~~~~~");
-        System.out.println("~~~Option 2:Add questions of your choice ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("~~~Option 3:                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        playGame = input.nextLine();
+        if (addQuestions.equals("yes")) {
+            AddQuestions(query);
+        }
 
-        //Begins the game if the user entered yes
-        while(playGame.equals("yes") || playGame.equals("y") || playGame.equals("Yes")){
+/**
+ for (int i = 0; i < query.size(); i++) {
+ System.out.println(query.get(i).getQuestion());
 
-            System.out.println("Please enter the number of players playing the game. You can only can only be in the range of 3 - 6 players per round. ");
-            numOfPlayers = input.nextInt();
-            input.nextLine();
+ }
+ **/
 
+        if (addQuestions.equals("no")) {
 
-            //Checks if the number of players is greater than 6
-            while(numOfPlayers < 3 || numOfPlayers > 6){
+            //Greets the user and ask if they would like to play the game
+            System.out.println("Hello, Welcome to black card revoked!");
+            System.out.println("Please enter 'yes' or 'no' if you are ready to play: ");
+            playGame = input.next();
 
-                System.out.println("Please enter a number that is in the range of 3 - 6");
-                System.out.println("You can not have more than 6 players");
+            //Begins the game if the user entered yes
+            if (playGame.equals("yes") || playGame.equals("y") || playGame.equals("Yes")) {
+
+                System.out.println("Please enter the number of players playing the game. You can only can only be in the range of 3 - 6 players per round. ");
                 numOfPlayers = input.nextInt();
                 input.nextLine();
+
+
+                //Checks if the number of players is greater than 6
+                if ((numOfPlayers < 3) || (numOfPlayers > 6)) {
+
+                    System.out.println("Please enter a number that is in the range of 3 - 6");
+                    System.out.println("You can not have more than 6 players");
+                    numOfPlayers = input.nextInt();
+                    input.nextLine();
+                }
             }
+            Player[] player = new Player[numOfPlayers];
 
 
             //Collects all of the participating players name's
-            for(int i = 1; i <= numOfPlayers; i++){
+            for (int i = 0; i < numOfPlayers; i++) {
 
                 //Instantiates the player object
-                player = new Player();
-                System.out.println("Hello player " + i + ", please enter your name: ");   //Prompts user to enter name
-                player.setPlayer(input.nextLine());
+                player[i] = new Player();
+                System.out.println("Hello player " + (i + 1) + ", please enter your name: ");   //Prompts user to enter name
+                player[i].setPlayer(input.nextLine());
+
                 //Adds the players entry into the player list
-                playerList.add(player);
-
-                //Checks to see if the name is entered in the right format
-                String regex1 = "\\d+";
-                while(player.name.matches(regex1)){
-
-                    System.out.println("That is the incorrect, Please enter name in the right format");
-                    player.setPlayer(input.nextLine());
-                    playerList.add(player);
-                }
 
 
             }
-
             System.out.println("Participants in the game: ");
 
-            for(int i = 0; i < playerList.size(); i++){
-                System.out.println(playerList.get(i).getPlayer());
+            for (int i = 0; i < numOfPlayers; i++) {
+                System.out.println(player[i].getPlayer());
             }
 
-
             //Participants in the game
-
-            //Shuffles the questions in the query arraylist
             Collections.shuffle(query);
-            takeTest(query, playerList);
+
+            takeTest(query, player);
 
             //Prompts the user if they would like to play again
             System.out.println("Would you like to continue playing another round? Enter 'yes' or 'no' ");
             playGame = input.nextLine();
-        }
 
-        while(playGame.equals("no") || playGame.equals("n") || playGame.equals("No")){
+
             System.out.println("Thank you for playing!!");
-            break;
-        }
-
-
-
+            input.close();
 
         /*
          //Test to see if the players names were collected
@@ -126,117 +123,115 @@ public class BlackCardLola {
                 System.out.println(playerList.get(i));
             }
          */
+        }
     }
 
-    //Allows users to answer the questions from Black Card Revoked
-    public static void takeTest(ArrayList<Questions> query, ArrayList<Player> playerList){
-        String answer = " ";         //For the user to store their answer
-        double score = 0.0;
-        double highScore = 0.0;
-        double highScore2=0.0;
-        String winner = " ";
-        String winner2 = " ";
 
+    //Allows users to answer the questions from Black Card Revoked
+    private static void takeTest(ArrayList<Questions> query, Player[]array)
+    {
+        String answer = " "; //For the user to store their answer
+        double score = 0.0;
         Scanner answerInput = new Scanner(System.in);
 
-        for(int i= 0; i < numOfPlayers; i++){
+        for(int i= 0; i < array.length; i++)
+        {
 
             //Prints out a question from the question list
             System.out.println(query.get(i).getQuestion());
 
             //Traverse the query list to show the player the questions
-            for(int j = 0; j < numOfPlayers; j++){
+            for(int j = 0; j < array.length; j++)
+            {
 
                 //Allows user to enter in their answer
-                System.out.println("Hello player " + playerList.get(j).getPlayer() + ", please enter your answer below: ");
+                System.out.println("Hello player "+(j+1)+", " + array[j].getPlayer() + ", please enter your answer below: ");
                 answer = answerInput.nextLine();
 
                 //Checks if the answer is correct
-                if(answer.equals(query.get(i).getAnswer())){
-                    playerList.get(j).score += 1;                                                //Increments the score by one point if the user gets the answer correct
-                    score = playerList.get(j).score;
-                    playerList.get(j).setScore(score);                                           //Sets the score of the player
+                if(answer.equals(query.get(i).getAnswer()))
+                {
+                    score+=1;
+                    array[j].setScore(score);                                          //Sets the score of the player
                 }
-            }
 
-            System.out.println("The answer for this question is: " + query.get(i).getAnswer());
+            }
         }
 
         System.out.println("Stats for this round: ");
 
-        ///Prints the players names and score for this round
-        for(int i = 0; i < playerList.size(); i++){
-            System.out.println(playerList.get(i));
+        //Prints the players names and score for this round
+        for(int i = 0; i < array.length; i++){
+            System.out.println(array[i].toString());
         }
-
-        //Checks for the highest score
-        for(int i = 0; i < playerList.size(); i++){
-            if(i == 0){
-                highScore = playerList.get(i).getScore();
-                // highScore2 = playerList.get(i+1).getScore();
-            }
-            if(playerList.get(i).getScore() > highScore){
-                highScore = playerList.get(i).getScore();                 //Saves the highest score
-                winner = playerList.get(i).getPlayer();                   //Saves the player with the highest score in the winner variable
+        answerInput.close();
+    }
 
 
-            }
-            //version 2
-        /**
-        //Checks for the highest score
-        for(int i = 0; i < playerList.size(); i++){
-            if(i == 0){
-                highScore = playerList.get(i).getScore();
-                highScore2 = playerList.get(i+1).getScore();
-            }
-            //if case of one winner
-            if(playerList.get(i).getScore() > highScore){
-                highScore = playerList.get(i).getScore();                 //Saves the highest score
-                winner = playerList.get(i).getPlayer();                   //Saves the player with the highest score in the winner variable
-                //Prints the winner
-                System.out.println("Congrats " + winner + ", you won this round!");
-            }//if case if two winners
-            else if(highScore==highScore2){
-                highScore2 = playerList.get(i+1).getScore();                 //Saves the highest score
-                winner2 = playerList.get(i+1).getPlayer();
-                System.out.println("Congrats " + winner + ", you won this round!");
-                System.out.println("Congrats " + winner2 + ", you won this round!");
-            }
 
-**/
-        //version 1
-            /**
-            else if(highScore == highScore2){
-                highScore = playerList.get(i).getScore();                 //Saves the highest score
-                winner = playerList.get(i).getPlayer();
+    private static void AddQuestions(ArrayList<Questions>query)
+    {
+        Scanner key=new Scanner(System.in);
+        int numQuestions=0;
 
-                highScore2 = playerList.get(i+1).getScore();                 //Saves the highest score
-                winner2 = playerList.get(i+1).getPlayer();
-                //Prints the winner
-                System.out.println("Congrats " + winner + ", you won this round!");
-                System.out.println("Congrats " + winner2 + ", you won this round!");
+        System.out.println("How many questions do you want to add?");
+        numQuestions=key.nextInt();
 
 
-            }
-             **/
+        String q;
+        String c1,c2,c3,c4;
+        String full;
+        String answer;
+        Questions[]question=new Questions[numQuestions];
+        for(int i=0;i<numQuestions;i++)
+        {
 
 
+            System.out.println("Please enter question number "+(i+1)+".");
+            key.nextLine();                                                //This is pretty much what i added
+            q=key.nextLine();
+
+
+
+
+
+
+
+
+            System.out.println("Please enter your first choice\n(a)");
+            c1=key.nextLine();
+
+
+            System.out.println("Please enter your second choice\n(b)");
+            c2=key.nextLine();
+
+
+            System.out.println("Please enter your third choice\n(c)");
+            c3=key.nextLine();
+
+
+            System.out.println("Please enter your fourth choice\n(d)");
+            c4=key.nextLine();
+
+
+
+            full=((q)+"\n(a) "+c1+"\n(b) "+c2+"\n(c) "+c3+"\n(d) "+c4);
+
+            System.out.println(full);
+
+
+            System.out.println("Which letter is the answer?");
+            answer=key.nextLine();
+
+            question[i]=new Questions(full,answer);
+            System.out.println(full+"  answer:"+answer);
+
+            query.add(question[i]);
         }
-        System.out.println("Congrats " + winner + ", you won this round!");
-
-
-
-
-        //Prints the person with the max score
-        //Player maxScoredPerson = Collections.max(playerList, Comparator.comparing(Player::getScore));
-       // System.out.println("The person with the highest score is " + maxScoredPerson);
-
-
 
     }
 
 }
-
 
 
 
