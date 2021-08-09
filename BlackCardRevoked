@@ -33,33 +33,42 @@ public class BlackCardRevoked
         System.out.println(" Please enter 'yes' or 'no' if you are ready to play: ");
         playGame = input.nextLine();
 
-        System.out.println();
-        System.out.println(" ----Black Card Revoked Game Rules ----");
-        System.out.println();
-        System.out.println(" OBJECT OF BLACK CARD REVOKED: ");
-        System.out.println(" The objective of Black Card Revoked \n is to not lose all ten of your points. "
-                + "\n The first player to lose all ten points \n is the loser! \n");
-        System.out.println(" NUMBER OF PLAYERS: 3 to 6 Players \n");
-        System.out.println(" MATERIALS: 54 Question Cards, 15 Answer Cards \n");
-        System.out.println(" TYPE OF GAME: PARTY CARD GAME \n");
-        System.out.println(" AUDIENCE: 13+ \n");
+        //Display the Menu options
+        switch(choice)
+        {
+            case 1: System.out.println(" ----Black Card Revoked Game Rules ----");
+                System.out.println();
+                System.out.println(" OBJECT OF BLACK CARD REVOKED: ");
+                System.out.println(" The objective of Black Card Revoked \n is to not lose all ten of your points. "
+                        + "\n The first player to lose all ten points \n is the loser! \n");
+                System.out.println(" NUMBER OF PLAYERS: 3 to 6 Players \n");
+                System.out.println(" MATERIALS: 54 Question Cards, 15 Answer Cards \n");
+                System.out.println(" TYPE OF GAME: PARTY CARD GAME \n");
+                System.out.println(" AUDIENCE: 13+ \n");
 
-        System.out.println(" SETUP \n ");
-        System.out.println(" To begin setup, give each player response cards. " + "Each \n player should have " +
-                "four response cards A, B, C, and D in \n their hand. The Question Cards are then shuffled " +
-                "displayed \n randomly for each player to make their response (A, B, C, or D). \n");
-        System.out.println(" GAMEPLAY \n");
-        System.out.println(" Each card will determine if the answer has a correct answer or \n " +
-                "if the majority will rule. " + "Players have six (6) to ten (10) \n seconds to decide " +
-                "on an answer. The players will then " + "be prompted \n to reveal their answers at once. \n");
-        System.out.println(" MAJORITY WINS: \n Determined by the answer selected by the majority of players \n " +
-                "(4 Players, 3 say 'A' then 'A' wins). \n\n If there is a tie, the game randomly makes the call on " +
-                "which \n answer wins.");
-        System.out.println(" \n If the card has a correct answer, the players who chose the \n wrong answer lose a point. " +
-                "Players begin the game with ten \n (10) points. \n");
-        System.out.println(" END OF GAME \n");
-        System.out.println(" The game comes to an end when a player loses all ten points! \n This player instantly " +
-                "gets their Black Card Revoked and they \n are the loser! \n");
+                System.out.println(" SETUP \n ");
+                System.out.println(" To begin setup, give each player response cards. " + "Each \n player should have " +
+                        "four response cards A, B, C, and D in \n their hand. The Question Cards are then shuffled " +
+                        "displayed \n randomly for each player to make their response (A, B, C, or D). \n");
+                System.out.println(" GAMEPLAY \n");
+                System.out.println(" Each card will determine if the answer has a correct answer or \n " +
+                        "if the majority will rule. " + "Players have six (6) to ten (10) \n seconds to decide " +
+                        "on an answer. The players will then " + "be prompted \n to reveal their answers at once. \n");
+                System.out.println(" MAJORITY WINS: \n Determined by the answer selected by the majority of players \n " +
+                        "(4 Players, 3 say 'A' then 'A' wins). \n\n If there is a tie, the game randomly makes the call on " +
+                        "which \n answer wins.");
+                System.out.println(" \n If the card has a correct answer, the players who chose the \n wrong answer lose a point. " +
+                        "Players begin the game with ten \n (10) points. \n");
+                System.out.println(" END OF GAME \n");
+                System.out.println(" The game comes to an end when a player loses all ten points! \n This player instantly " +
+                        "gets their Black Card Revoked and they \n are the loser! \n");
+                break;
+
+                case 2: System.out.println("Help");
+                break;
+
+            default: System.out.println("Invalid choice");
+        }//end switch
 
 
         //Questions for Black Card Revoked
