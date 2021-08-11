@@ -36,6 +36,19 @@ public class BlackCard
         String q5 = "If Young Metro don't trust you, what might Future do?\n"
           + "(a)Call the Police\n(b)Shoot you\n(c)Fight you\n(d)Beat you\n";
         
+        String q6 = "You witness a fight. What do you do next?"
+          + "(a)Call the Police\n(b)Film it with your camera.\n(c)Break it up\n(d)Yell...\n";
+        
+        String q7 = "Who has the best biscuit?"
+          + "(a)Popeyes\n(b)Red Lobster\n(c)KFC\n(d)Churches\n"; 
+        
+        String q8 = "How long should a woman tolerate her man's successful rap career?"
+          + "(a)'til death do them part\n(b)'til they have kids\n(c)'till bill collectors start calling\n(d)'til he has a side baby\n"; 
+        
+         String q9 = "You know an older black couple is in love when they?"
+          + "(a)wear matching outfits\n(b)go out to line dance\n(c)make it more than 30 years\n(d)sleep in the same bedroom\n"; 
+        
+        
         //Adds the questions q1, q2...qn into the list query, with the Questions class as its type
         ArrayList<Questions> query = new ArrayList<Questions>();
         query.add(new Questions(q1, "a"));
@@ -43,6 +56,10 @@ public class BlackCard
         query.add(new Questions(q3, "b"));
         query.add(new Questions(q4, "d"));
         query.add(new Questions(q5, "b"));
+        query.add(new Questions(q6, "b"));
+        query.add(new Questions(q7, "b"));
+        query.add(new Questions(q8, "b"));
+        query.add(new Questions(q9, "b"));
         
         System.out.println("Hello, Welcome to black card revoked!");
         System.out.println("Please enter 1, if you would like to see the instructions for the game.");
@@ -50,6 +67,7 @@ public class BlackCard
         System.out.println("Please enter 3, if you would like to begin playing the game.");
                 
         userOptions = input.nextInt();
+        input.nextLine();
         
         //If user choics option 1
         
@@ -84,14 +102,14 @@ public class BlackCard
         
              //If user choics option 2
         
-              if(userOptions == 2){       
+              else if(userOptions == 2){       
                 //Ask the user if they would like to add a question
                 System.out.println("Before we begin the game, would the user like to add questions? Enter yes or no.");
-                addQuestions=input.nextLine();
-        
-                if(addQuestions.equals("yes")){
-                AddQuestions(query);
-                }
+                    addQuestions = input.nextLine();
+                  
+                    if(addQuestions.equals("yes")){
+                        AddQuestions(query);
+                    }
         	
                 //Prints the updated list of questions
                 for(int i=0;i<query.size();i++) 
@@ -198,8 +216,11 @@ public class BlackCard
                 score+=1;
                 array[j].setScore(score);                                          //Sets the score of the player         
             }
-                              
+           
+            
         } 
+             //Removes the question ask from the list
+             query.remove(i).getQuestion();
       }
          
          System.out.println("Stats for this round: ");
