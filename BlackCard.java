@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Collections;
-public class practice
+public class BlackCard
 {
     
     static int numOfPlayers = 0;
@@ -53,8 +53,8 @@ public class practice
         
         //If user choics option 1
         
-        if(userOptions == 1){
-             System.out.println(" ----Black Card Revoked Game Rules ----");
+            if(userOptions == 1){
+                System.out.println(" ----Black Card Revoked Game Rules ----");
                 System.out.println();
                 System.out.println(" OBJECT OF BLACK CARD REVOKED: ");
                 System.out.println(" The objective of Black Card Revoked \n is to not lose all ten of your points. "
@@ -80,40 +80,39 @@ public class practice
                 System.out.println(" END OF GAME \n");
                 System.out.println(" The game comes to an end when a player loses all ten points! \n This player instantly " +
                         "gets their Black Card Revoked and they \n are the loser! \n");
-        }
+              }
         
-         //If user choics option 2
+             //If user choics option 2
         
-        if(userOptions == 2){       
-        //Ask the user if they would like to add a question
-        System.out.println("Before we begin the game, would the user like to add questions? Enter yes or no.");
-        addQuestions=input.nextLine();
+              if(userOptions == 2){       
+                //Ask the user if they would like to add a question
+                System.out.println("Before we begin the game, would the user like to add questions? Enter yes or no.");
+                addQuestions=input.nextLine();
         
-        if(addQuestions.equals("yes")){
-        	AddQuestions(query);
-        }
+                if(addQuestions.equals("yes")){
+                AddQuestions(query);
+                }
         	
-        //Prints the updated list of questions
-        for(int i=0;i<query.size();i++) 
-        {
-          	System.out.println(query.get(i).getQuestion());
+                //Prints the updated list of questions
+                for(int i=0;i<query.size();i++) 
+                {
+                    System.out.println(query.get(i).getQuestion());
           	
-          }
-        }
+                  }
+               }
         
-        //If user choics option 1
-        
-        
-        //Greets the user and ask if they would like to play the game
-        //System.out.println("Hello, Welcome to black card revoked!");
-        System.out.println("Please enter 'yes' or 'no' if you are ready to play: ");
-        playGame = input.next();
+             //If user choics option 3
         
         
+                    //Greets the user and ask if they would like to play the game
+                    System.out.println("Please enter 'yes' or 'no' if you are ready to play: ");
+                    playGame = input.next();
         
-        //Begins the game if the user entered yes
-              if(playGame.equals("yes") || playGame.equals("y") || playGame.equals("Yes"))
-              {
+        
+        
+                  //Begins the game if the user entered yes
+                  while(playGame.equals("yes") || playGame.equals("y") || playGame.equals("Yes")){
+              
             
                     System.out.println("Please enter the number of players playing the game. You can only can only be in the range of 3 - 6 players per round. ");
                     numOfPlayers = input.nextInt();
@@ -129,43 +128,43 @@ public class practice
                         numOfPlayers = input.nextInt();
                         input.nextLine();        
                       }
-              }
-              Player[] player = new Player[numOfPlayers];
-             
+                    //}
+        
+        
+                       Player[] player = new Player[numOfPlayers];            
+                       
+                        //Collects all of the participating players name's
+                        for(int i = 0; i < numOfPlayers; i++){                            
                 
-                  
-                //Collects all of the participating players name's
-                    for(int i = 0; i < numOfPlayers; i++)
-                    {
+                        //Instantiates the player object
+                        player[i] = new Player();
+                        System.out.println("Hello player " + (i+1) + ", please enter your name: ");   //Prompts user to enter name
+                            
+                        //Adds the players entry into the player list   
+                        player[i].setPlayer(input.nextLine());
                 
-                    //Instantiates the player object
-                    player[i] = new Player();
-                    System.out.println("Hello player " + (i+1) + ", please enter your name: ");   //Prompts user to enter name
-                    player[i].setPlayer(input.nextLine());
-                
-                    //Adds the players entry into the player list
-                                                                                       
-                  
-                    }
-                  System.out.println("Participants in the game: ");
-                  
-                  for(int i = 0; i < numOfPlayers; i++)
-                  {        
+                                                                                                        
+                        }
+        
+                      System.out.println("Participants in the game: ");
+                       
+                      for(int i = 0; i < numOfPlayers; i++){                          
                       System.out.println(player[i].getPlayer());
-                  }
+                      }
  
                   //Participants in the game
-            Collections.shuffle(query);
+                    Collections.shuffle(query);
            
-            takeTest(query, player);
+                    takeTest(query, player);
          
-             //Prompts the user if they would like to play again   
-             System.out.println("Would you like to continue playing another round? Enter 'yes' or 'no' ");
-             playGame = input.nextLine();
+                    //Prompts the user if they would like to play again   
+                     System.out.println("Would you like to continue playing another round? Enter 'yes' or 'no' ");
+                     playGame = input.nextLine();
+                     input.nextLine();
           
-        
-        System.out.println("Thank you for playing!!");
-        input.close();
+                  }
+                 System.out.println("Thank you for playing!!");
+                 input.close();
     
         
     }
@@ -228,52 +227,47 @@ public class practice
     	 String full;
     	 String answer;
     	 Questions[]question=new Questions[numQuestions];
+         
+         //Allows user to enter in their question and answer choices
     	 for(int i=0;i<numQuestions;i++)
     	 {
    
     		
     		 System.out.println("Please enter question number "+(i+1)+".");
-    		 key.nextLine();                                                //This is pretty much what i added
-    		 q=key.nextLine();
+    		 key.nextLine();                                                
+    		 q=key.nextLine();   		   		
     		
+    		//Allows the user to enter in the answer choices for their question   		 
+                 System.out.println("Please enter your first choice\n(a)");
+                 c1=key.nextLine();   		
+    		 
+                 System.out.println("Please enter your second choice\n(b)");
+                 c2=key.nextLine();   		 
     		
-    		
-    		   
+                 System.out.println("Please enter your third choice\n(c)");
+                 c3=key.nextLine();    		 
     		 
-    		 
-   
-    		 
-    		 System.out.println("Please enter your first choice\n(a)");
-    		 c1=key.nextLine();
-    		
-    		 
-    		 System.out.println("Please enter your second choice\n(b)");
-    		 c2=key.nextLine();
-    		 
-    		
-    		 System.out.println("Please enter your third choice\n(c)");
-    		 c3=key.nextLine();
-    		 
-    		 
-    		 System.out.println("Please enter your fourth choice\n(d)");
-    		 c4=key.nextLine();
+                 System.out.println("Please enter your fourth choice\n(d)");
+                 c4=key.nextLine();
     		
     		 
-    		 
-    		 full=((q)+"\n(a) "+c1+"\n(b) "+c2+"\n(c) "+c3+"\n(d) "+c4);
-    		 
-    		 System.out.println(full);
+    		 //Creates the format the Question and answer string
+                 full=((q)+"\n(a) "+c1+"\n(b) "+c2+"\n(c) "+c3+"\n(d) "+c4);   		 
+                 System.out.println(full);
     		
     		 
     		 System.out.println("Which letter is the answer?");
     		 answer=key.nextLine();
-    		 
-    		question[i]=new Questions(full,answer);
+    		
+            //Adds the question and answer as an object for the questions class
+    		 question[i] = new Questions(full,answer);
     		 System.out.println(full+"  answer:"+answer);
     		 
+             //Adds the question object in to the query list
     		 query.add(question[i]);
     	 }
     	 
      }
                                  
-}      
+}   
+
